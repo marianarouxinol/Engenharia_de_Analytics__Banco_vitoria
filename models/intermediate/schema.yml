@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: int_operacional
+    description: >
+      Tabela intermediária que consolida transações, contas e propostas.
+      Aplica regras de negócio e prepara os dados para análises operacionais.
+    columns:
+      - name: cod_transacoes
+        description: Identificador único da transação.
+
+      - name: datas_transacoes
+        description: Data e hora da transação.
+
+      - name: nomes_transacoes
+        description: Tipo ou nome da transação.
+
+      - name: valores_transacoes
+        description: Valor movimentado na transação.
+
+      - name: cod_clientes
+        description: Cliente titular da conta associada à transação.
+
+      - name: cod_agencias
+        description: Agência vinculada à conta.
+
+      - name: cod_colaboradores
+        description: Colaborador responsável pela conta ou proposta.
+
+      - name: tipos_contas
+        description: Tipo da conta bancária.
+
+      - name: saldos_totais
+        description: Saldo total da conta no momento da transação.
+
+      - name: saldos_disponiveis
+        description: Saldo disponível para movimentação.
+
+      - name: status_propostas
+        description: Status da proposta associada à transação.
+
+      - name: valores_propostas
+        description: Valor solicitado na proposta.
+
+     
