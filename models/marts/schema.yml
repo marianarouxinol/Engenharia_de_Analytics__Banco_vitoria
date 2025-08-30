@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: dim_cliente
+    description: >
+      Dimensão de clientes do banco BanVic.
+      Contém informações demográficas e tipo de cliente (PF ou PJ).
+    columns:
+      - name: cod_clientes
+        description: Identificador único do cliente.
+      - name: tipos_clientes
+        description: Tipo de cliente (Pessoa Física ou Jurídica).
+      - name: cpfs_cnpjs
+        description: Documento do cliente, podendo ser CPF ou CNPJ.
+      - name: datas_nascimentos
+        description: Data de nascimento do cliente.
+      - name: idades
+        description: Idade calculada com base na data de nascimento.
+
+  - name: dim_colaborador
+    description: >
+      Dimensão de colaboradores vinculados às agências.
+      Utilizada para análises operacionais e de performance.
+    columns:
+      - name: cod_colaboradores
+        description: Identificador único do colaborador.
+      - name: cpfs_colaboradores
+        description: CPF do colaborador.
+      - name: datas_nascimentos
+        description: Data de nascimento do colaborador.
+      - name: idades
+        description: Idade calculada com base na data de nascimento.
+
+  - name: dim_agencia
+    description: >
+      Dimensão de agências bancárias.
+      Permite segmentações geográficas e operacionais.
+    columns:
+      - name: cod_agencias
+        description: Identificador único da agência.
+      - name: nomes_agencias
+        description: Nome da agência.
+      - name: cidades
+        description: Cidade onde a agência está localizada.
+      - name: ufs
+        description: Unidade federativa da agência.
+
+  - name: dim_data
+    description: >
+      Dimensão de tempo para análises temporais.
+      Inclui granularidades como dia, mês, trimestre e dia da semana.
+    columns:
+      - name: datas
+        description: Data completa.
+      - name: ano
+        description: Ano da data.
+      - name: mes
+        description: Mês da data.
+      - name: dia
+        description: Dia do mês.
+      - name: trimestre
+        description: Trimestre correspondente.
+      - name: dia_semana_num
+        description: Número do dia da semana (1 = Domingo, 7 = Sábado).
+      - name: dia_semana_nome
+        description: Nome do dia da semana.
+      - name: ano_mes
+        description: Combinação de ano e mês (YYYY-MM).
+
+  - name: dim_cambio
+    description: >
+      Dimensão de cotação do dólar comercial.
+      Utilizada para corre
