@@ -1,0 +1,112 @@
+version: 2
+
+sources:
+  - name: erp
+    database: BANVIC
+    schema: RAW_BANVIC
+    tables:
+
+      - name: CLIENTES
+        description: "Clientes registrados no sistema bancário"
+        columns:
+          - name: COD_CLIENTE
+            description: "Identificador único do cliente"
+            tests:
+              - not_null
+              - unique
+          - name: CPF_CNPJ
+            description: "Documento do cliente, pode ser CPF ou CNPJ"
+          - name: TIPO_CLIENTE
+            description: "Tipo de cliente (PF ou PJ)"
+
+      - name: AGENCIAS
+        description: "Agências bancárias disponíveis"
+        columns:
+          - name: COD_AGENCIA
+            description: "Identificador único da agência"
+            tests:
+              - not_null
+              - unique
+          - name: UF
+            description: "Unidade federativa da agência"
+
+      - name: COLABORADORES
+        description: "Funcionários vinculados às agências"
+        columns:
+          - name: COD_COLABORADOR
+            description: "Identificador único do colaborador"
+            tests:
+              - not_null
+              - unique
+          - name: CPF
+            description: "CPF do colaborador"
+          - name: DATA_NASCIMENTO
+            description: "Data de nascimento do colaborador"
+
+      - name: CONTAS
+        description: "Contas bancárias vinculadas a clientes e agências"
+        columns:
+          - name: NUM_CONTA
+            description: "Número da conta bancária"
+            tests:
+              - not_null
+              - unique
+
+      - name: COTACAO_DOLAR
+        description: "Tabela externa com a cotação diária do dólar comercial"
+        columns:
+          - name: DATA
+            description: "Data da cotação"
+            tests:
+              - not_null
+              - unique
+          - name: VALOR
+            description: "Valor do dólar comercial na data"        
+
+      - name: TRANSACOES
+        description: "Transações realizadas nas contas bancárias"
+        columns:
+          - name: COD_TRANSACAO
+            description: "Identificador único da transação"
+            tests:
+              - not_null
+              - unique
+          - name: NUM_CONTA
+            description: "Número da conta associada à transação"
+          - name: DATA_TRANSACAO
+            description: "Data e hora da transação"
+          - name: NOME_TRANSACAO
+            description: "Tipo ou nome da transação (ex: Saque, Transferência)"
+          - name: VALOR_TRANSACAO
+            description: "Valor movimentado na transação"   
+
+      - name: PROPOSTAS_CREDITO
+        description: "Propostas de crédito solicitadas pelos clientes"
+        columns:
+          - name: COD_PROPOSTA
+            description: "Identificador único da proposta"
+            tests:
+              - not_null
+              - unique
+          - name: COD_CLIENTE
+            description: "Cliente que solicitou a proposta"
+          - name: COD_COLABORADOR
+            description: "Colaborador responsável pela proposta"
+          - name: DATA_ENTRADA_PROPOSTA
+            description: "Data de entrada da proposta no sistema"
+          - name: TAXA_JUROS_MENSAL
+            description: "Taxa de juros mensal aplicada"
+          - name: VALOR_PROPOSTA
+            description: "Valor solicitado na proposta"
+          - name: VALOR_FINANCIAMENTO
+            description: "Valor total do financiamento aprovado"
+          - name: VALOR_ENTRADA
+            description: "Valor de entrada pago pelo cliente"
+          - name: VALOR_PRESTACAO
+            description: "Valor de cada prestação"
+          - name: QUANTIDADE_PARCELAS
+            description: "Número de parcelas acordadas"
+          - name: CARENCIA
+            description: "Meses de carência antes do início do pagamento"
+          - name: STATUS_PROPOSTA
+            description: "Status atual da proposta (ex: Enviada, Aprovada)"     
