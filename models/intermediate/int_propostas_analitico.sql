@@ -1,23 +1,17 @@
-{{ config(materialized='table') }}
-
 with propostas as (
-    select *
-    from {{ ref('stg_erp__propostas_credito') }}
+    select * from {{ ref('stg_erp__propostas_credito') }}
 ),
-
 clientes as (
-    select *
-    from {{ ref('stg_erp__clientes') }}
+    select * from {{ ref('stg_erp__clientes') }}
 ),
-
 colaboradores as (
-    select *
-    from {{ ref('stg_erp__colaboradores') }}
+    select * from {{ ref('stg_erp__colaboradores') }}
 ),
-
+relacao as (
+    select * from {{ ref('stg_erp__colaborador_agencia') }}
+),
 agencias as (
-    select *
-    from {{ ref('stg_erp__agencias') }}
+    select * from {{ ref('stg_erp__agencias') }}
 ),
 
 base as (
@@ -48,7 +42,8 @@ base as (
     from propostas p
     left join clientes c on p.cod_clientes = c.cod_clientes
     left join colaboradores col on p.cod_colaboradores = col.cod_colaboradores
-    left join agencias a on p.cod_agencias = a.cod_agencias
+    left join relacao r on col.cod_colaboradores = r.cod_colaboradores
+    left join agencias a on r.cod_agencias = a.cod_agencias
 )
 
 select *
