@@ -4,7 +4,7 @@ with base as (
         cod_colaboradores,
         TRIM(cpfs) as cpfs_colaboradores,
         TRY_TO_DATE(datas_nascimentos) as datas_nascimentos,
-        date_diff(current_date, TRY_TO_DATE(datas_nascimentos), year) as idades
+        timestampdiff(year, TRY_TO_DATE(datas_nascimentos), current_date)
     from {{ ref('stg_erp__colaboradores') }}
 
 ),

@@ -5,7 +5,7 @@ with base as (
         COALESCE(UPPER(TRIM(tipos_clientes)), 'NÃO INFORMADO') as tipos_clientes,
         cpfs_cnpjs,
         datas_nascimentos,
-        date_diff(current_date, datas_nascimentos, year) as idades
+        timestampdiff(year, datas_nascimentos, current_date)
     from {{ ref('stg_erp__clientes') }}
 
 ),
