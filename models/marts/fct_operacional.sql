@@ -28,6 +28,9 @@ base as (
         c.cod_colaboradores,
         c.tipos_contas,
 
+        -- Identificador da conta
+         c.nums_contas, 
+
         -- Métricas da conta
         c.saldos_totais,
         c.saldos_disponiveis,
