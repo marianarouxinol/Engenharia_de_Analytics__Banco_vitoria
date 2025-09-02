@@ -30,7 +30,7 @@ SELECT
     t.tipo_transacao,
     t.valor_transacao,
 
-    -- ✅ Classificação do mês da transação
+    
     CASE 
         WHEN EXTRACT(MONTH FROM t.data_transacao) % 2 = 0 THEN 'Mes Par'
         ELSE 'Mes Impar'
