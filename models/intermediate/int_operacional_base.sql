@@ -30,9 +30,18 @@ SELECT
     t.tipo_transacao,
     t.valor_transacao,
 
-    -- Cotação do dólar
-    cota.cotacao_diaria,
+    -- ✅ Classificação do mês da transação
+    CASE 
+        WHEN EXTRACT(MONTH FROM t.data_transacao) % 2 = 0 THEN 'Mes Par'
+        ELSE 'Mes Impar'
+    END AS situacao_mes,
+
+    -- Cotação do dólar (ajustada)
+    cota.cotacao_media_dia,
     cota.data_dolar AS data_cotacao,
+    cota.ano,
+    cota.mes,
+    cota.ano_mes,
 
     -- Contas
     c.cod_cliente,

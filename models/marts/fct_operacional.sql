@@ -21,10 +21,11 @@ SELECT
     t.taxa_juros_mensal,
     t.quantidade_parcelas,
     t.carencia,
-    t.cotacao_diaria,
+    t.cotacao_media_dia,
 
-    -- Atributos
-    t.tipo_transacao
+    
+    t.tipo_transacao,
+    t.situacao_mes  
 
 FROM {{ ref('int_operacional_base') }} t
 WHERE t.cod_transacao IS NOT NULL
