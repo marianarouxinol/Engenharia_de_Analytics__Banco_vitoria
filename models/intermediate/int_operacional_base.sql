@@ -1,17 +1,25 @@
 WITH transacoes AS (
     SELECT * FROM {{ ref('stg_erp__transacoes') }}
 ),
+
 contas AS (
     SELECT * FROM {{ ref('stg_erp__contas') }}
 ),
+
 clientes AS (
     SELECT * FROM {{ ref('stg_erp__clientes') }}
 ),
+
 propostas AS (
     SELECT * FROM {{ ref('stg_erp__propostas_credito') }}
 ),
+
 colaboradores AS (
     SELECT * FROM {{ ref('stg_erp__colaboradores') }}
+),
+
+cotacao AS (
+    SELECT * FROM {{ ref('stg_erp__cotacao_dolar') }}
 )
 
 SELECT
@@ -21,6 +29,10 @@ SELECT
     t.data_transacao,
     t.tipo_transacao,
     t.valor_transacao,
+
+    -- Cotação do dólar
+    cota.cotacao_diaria,
+    cota.data_dolar AS data_cotacao,
 
     -- Contas
     c.cod_cliente,
@@ -70,3 +82,4 @@ LEFT JOIN contas c ON t.num_conta = c.num_conta
 LEFT JOIN clientes cl ON c.cod_cliente = cl.cod_cliente
 LEFT JOIN propostas p ON t.cod_transacao = p.cod_proposta
 LEFT JOIN colaboradores col ON c.cod_colaborador = col.cod_colaborador
+LEFT JOIN cotacao cota ON t.data_transacao = cota.data_dolar
