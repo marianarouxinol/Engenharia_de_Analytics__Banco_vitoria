@@ -6,6 +6,7 @@ SELECT
     t.cod_agencia,
     t.cod_colaborador,
     t.data_transacao,
+    t.data_cotacao,
     t.tipo_conta,
     t.status_proposta,
 
@@ -20,6 +21,7 @@ SELECT
     t.taxa_juros_mensal,
     t.quantidade_parcelas,
     t.carencia,
+    t.cotacao_diaria,
 
     -- Atributos
     t.tipo_transacao
