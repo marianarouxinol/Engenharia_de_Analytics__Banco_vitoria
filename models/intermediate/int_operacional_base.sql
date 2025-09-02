@@ -30,9 +30,18 @@ SELECT
     t.tipo_transacao,
     t.valor_transacao,
 
+    
+    CASE 
+        WHEN EXTRACT(MONTH FROM t.data_transacao) % 2 = 0 THEN 'Mes Par'
+        ELSE 'Mes Impar'
+    END AS situacao_mes,
+
     -- Cotação do dólar
-    cota.cotacao_diaria,
+    cota.cotacao_media_dia,
     cota.data_dolar AS data_cotacao,
+    cota.ano,
+    cota.mes,
+    cota.ano_mes,
 
     -- Contas
     c.cod_cliente,
@@ -45,6 +54,7 @@ SELECT
     c.saldo_disponivel,
 
     -- Clientes
+    cl.cod_cliente AS cod_cliente_cliente,
     cl.primeiro_nome,
     cl.ultimo_nome,
     cl.email,
@@ -83,3 +93,4 @@ LEFT JOIN clientes cl ON c.cod_cliente = cl.cod_cliente
 LEFT JOIN propostas p ON t.cod_transacao = p.cod_proposta
 LEFT JOIN colaboradores col ON c.cod_colaborador = col.cod_colaborador
 LEFT JOIN cotacao cota ON t.data_transacao = cota.data_dolar
+   
