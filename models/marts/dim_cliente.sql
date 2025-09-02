@@ -1,7 +1,9 @@
 SELECT
-    cod_cliente,
-    tipo_cliente,
-    data_nascimento,
-    cpf_cnpj
-    -- uf_cliente ← removido por ausência
-FROM {{ ref('stg_erp__clientes') }}
+  cod_cliente,
+  primeiro_nome_cliente,
+  ultimo_nome_cliente,
+  cpf_cliente,
+  cidade_cliente,
+  uf_cliente,
+  tipo_cliente
+FROM {{ ref('int_clientes__colaboradores_agencias') }}
