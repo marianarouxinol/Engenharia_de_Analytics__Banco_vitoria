@@ -1,45 +1,45 @@
 version: 2
 
 models:
-  - name: int_operacional
+  - name: int_clientes__colaboradores_agencias
     description: >
-      Tabela intermediária que consolida transações, contas e propostas.
-      Aplica regras de negócio e prepara os dados para análises operacionais.
+      Modelo intermediário que consolida informações de clientes, colaboradores e agências.
+      Permite análises cruzadas por perfil de cliente, responsável comercial e localização da agência.
+
     columns:
-      - name: cod_transacoes
-        description: Identificador único da transação.
+      - name: cod_colaborador
+        description: Identificador único do colaborador.
 
-      - name: datas_transacoes
-        description: Data e hora da transação.
+      - name: primeiro_nome_colaborador
+        description: Primeiro nome do colaborador, formatado com capitalização adequada.
 
-      - name: nomes_transacoes
-        description: Tipo ou nome da transação.
+      - name: ultimo_nome_colaborador
+        description: Último nome do colaborador, formatado com capitalização adequada.
 
-      - name: valores_transacoes
-        description: Valor movimentado na transação.
+      - name: cpf_colaborador
+        description: CPF do colaborador, limpo e sem pontuação.
 
-      - name: cod_clientes
-        description: Cliente titular da conta associada à transação.
+      - name: cod_agencia
+        description: Identificador único da agência vinculada ao colaborador.
 
-      - name: cod_agencias
-        description: Agência vinculada à conta.
+      - name: nome_agencia
+        description: Nome da agência bancária.
 
-      - name: cod_colaboradores
-        description: Colaborador responsável pela conta ou proposta.
+      - name: cidade_agencia
+        description: Cidade onde a agência está localizada.
 
-      - name: tipos_contas
-        description: Tipo da conta bancária.
+      - name: uf_agencia
+        description: Unidade federativa (UF) da agência.
 
-      - name: saldos_totais
-        description: Saldo total da conta no momento da transação.
+      - name: cod_cliente
+        description: Identificador único do cliente.
 
-      - name: saldos_disponiveis
-        description: Saldo disponível para movimentação.
+      - name: primeiro_nome_cliente
+        description: Primeiro nome do cliente, formatado com capitalização adequada.
 
-      - name: status_propostas
-        description: Status da proposta associada à transação.
+      - name: ultimo_nome_cliente
+        description: Último nome do cliente, formatado com capitalização adequada.
 
-      - name: valores_propostas
-        description: Valor solicitado na proposta.
+      - name: cpf_cliente
+        description: CPF ou CNPJ do cliente
 
-     

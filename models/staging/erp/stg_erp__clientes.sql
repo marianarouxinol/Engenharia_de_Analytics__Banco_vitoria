@@ -1,4 +1,5 @@
 WITH base AS (
+
     SELECT
         COD_CLIENTE AS cod_cliente,
         INITCAP(TRIM(PRIMEIRO_NOME)) AS primeiro_nome,
@@ -9,8 +10,16 @@ WITH base AS (
         REGEXP_REPLACE(CPFCNPJ, '[^0-9]', '') AS cpf_cnpj,
         TRY_TO_DATE(DATA_NASCIMENTO) AS data_nascimento,
         TRIM(ENDERECO) AS endereco,
-        REGEXP_REPLACE(CEP, '[^0-9]', '') AS cep
+        REGEXP_REPLACE(CEP, '[^0-9]', '') AS cep,
+
+        -- Extração da cidade: entre o CEP e a barra "/"
+        INITCAP(TRIM(REGEXP_SUBSTR(ENDERECO, '[0-9]{5}-[0-9]{3}\\s*(.+?)\\s*/'))) AS cidade,
+
+        -- Extração da UF: após a barra "/"
+        UPPER(TRIM(REGEXP_SUBSTR(ENDERECO, '/\\s*([A-Z]{2})$'))) AS uf
+
     FROM {{ source('erp', 'CLIENTES') }}
+
 )
 
 SELECT * FROM base
