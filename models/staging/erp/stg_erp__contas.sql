@@ -1,26 +1,15 @@
-with base as (
-
-    select
-        NUM_CONTA               as nums_contas,
-        COD_CLIENTE             as cod_clientes,
-        COD_AGENCIA             as cod_agencias,
-        COD_COLABORADOR         as cod_colaboradores,
-        COALESCE(UPPER(TRIM(TIPO_CONTA)), 'NÃO INFORMADO') as tipos_contas,
-        TRY_TO_TIMESTAMP(DATA_ABERTURA) as datas_aberturas,
-        CAST(SALDO_TOTAL AS FLOAT) as saldos_totais,
-        CAST(SALDO_DISPONIVEL AS FLOAT) as saldos_disponiveis,
-        TRY_TO_TIMESTAMP(DATA_ULTIMO_LANCAMENTO) as datas_ultimos_lancamentos
-    from {{ source('erp', 'CONTAS') }}
-
-),
-
-
-final as (
-
-    select *
-    from base
-
+WITH base AS (
+    SELECT
+        NUM_CONTA AS num_conta,
+        COD_CLIENTE AS cod_cliente,
+        COD_AGENCIA AS cod_agencia,
+        COD_COLABORADOR AS cod_colaborador,
+        COALESCE(UPPER(TRIM(TIPO_CONTA)), 'NÃO INFORMADO') AS tipo_conta,
+        TRY_TO_TIMESTAMP(DATA_ABERTURA) AS data_abertura,
+        CAST(SALDO_TOTAL AS FLOAT) AS saldo_total,
+        CAST(SALDO_DISPONIVEL AS FLOAT) AS saldo_disponivel,
+        TRY_TO_TIMESTAMP(DATA_ULTIMO_LANCAMENTO) AS data_ultimo_lancamento
+    FROM {{ source('erp', 'CONTAS') }}
 )
 
-select *
-from final
+SELECT * FROM base

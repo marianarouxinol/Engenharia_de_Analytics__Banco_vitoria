@@ -1,50 +1,66 @@
-with propostas as (
-    select * from {{ ref('stg_erp__propostas_credito') }}
-),
-clientes as (
-    select * from {{ ref('stg_erp__clientes') }}
-),
-colaboradores as (
-    select * from {{ ref('stg_erp__colaboradores') }}
-),
-relacao as (
-    select * from {{ ref('stg_erp__colaborador_agencia') }}
-),
-agencias as (
-    select * from {{ ref('stg_erp__agencias') }}
+WITH propostas AS (
+    SELECT * FROM BANVIC.dbt_mrouxinol_erp.stg_erp__propostas_credito
 ),
 
-base as (
-    select
-        p.cod_propostas,
-        p.datas_entradas_propostas,
-        p.status_propostas,
-        p.valores_propostas,
-        p.valores_financiamentos,
-        p.valores_entradas,
-        p.valores_prestacoes,
-        p.taxas_juros_mensais,
-        p.quantidades_parcelas,
-        p.carencias,
+clientes AS (
+    SELECT * FROM BANVIC.dbt_mrouxinol_erp.stg_erp__clientes
+),
 
-        c.cod_clientes,
-        c.tipos_clientes,
-        c.datas_nascimentos,
+colaboradores AS (
+    SELECT * FROM BANVIC.dbt_mrouxinol_erp.stg_erp__colaboradores
+),
 
-        col.cod_colaboradores,
-        col.primeiros_nomes,
-        col.ultimos_nomes,
+relacao AS (
+    SELECT
+        "COD_AGENCIAS" AS cod_agencia,
+        "COD_COLABORADORES" AS cod_colaborador
+    FROM BANVIC.dbt_mrouxinol_erp.stg_erp__colaborador_agencia
+),
 
-        a.cod_agencias,
-        a.nomes_agencias,
-        a.ufs
-
-    from propostas p
-    left join clientes c on p.cod_clientes = c.cod_clientes
-    left join colaboradores col on p.cod_colaboradores = col.cod_colaboradores
-    left join relacao r on col.cod_colaboradores = r.cod_colaboradores
-    left join agencias a on r.cod_agencias = a.cod_agencias
+agencias AS (
+    SELECT
+        cod_agencia,
+        nome_agencia,
+        cidade,
+        uf,
+        data_abertura
+    FROM BANVIC.dbt_mrouxinol_erp.stg_erp__agencias
 )
 
-select *
-from base
+SELECT
+    -- Proposta
+    p.cod_proposta,
+    p.data_entrada_proposta,
+    p.status_proposta,
+    p.valor_proposta,
+    p.valor_financiamento,
+    p.valor_entrada,
+    p.valor_prestacao,
+    p.taxa_juros_mensal,
+    p.quantidade_parcelas,
+    p.carencia,
+
+    -- Cliente
+    c.cod_cliente,
+    c.tipo_cliente,
+    c.data_nascimento AS data_nascimento_cliente,
+    c.cpf_cnpj,
+
+    -- Colaborador
+    col.cod_colaborador,
+    col.primeiro_nome AS primeiro_nome_colaborador,
+    col.ultimo_nome AS ultimo_nome_colaborador,
+    col.data_nascimento AS data_nascimento_colaborador,
+
+    -- Agência
+    a.cod_agencia,
+    a.nome_agencia,
+    a.cidade,
+    a.uf AS uf_agencia,
+    a.data_abertura AS data_abertura_agencia
+
+FROM propostas p
+LEFT JOIN clientes c ON p.cod_cliente = c.cod_cliente
+LEFT JOIN colaboradores col ON p.cod_colaborador = col.cod_colaborador
+LEFT JOIN relacao r ON col.cod_colaborador = r.cod_colaborador
+LEFT JOIN agencias a ON r.cod_agencia = a.cod_agencia

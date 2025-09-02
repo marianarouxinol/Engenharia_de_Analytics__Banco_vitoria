@@ -1,47 +1,39 @@
-{{ config(materialized='table') }}
-
-with clientes as (
-    select *
-    from {{ ref('stg_erp__clientes') }}
+WITH relacao AS (
+    SELECT
+        "COD_AGENCIAS" AS cod_agencia,
+        "COD_COLABORADORES" AS cod_colaborador
+    FROM BANVIC.dbt_mrouxinol_erp.stg_erp__colaborador_agencia
 ),
 
-agencias as (
-    select *
-    from {{ ref('stg_erp__agencias') }}
+colaboradores AS (
+    SELECT
+        cod_colaborador,
+        primeiro_nome,
+        ultimo_nome,
+        cpf
+    FROM BANVIC.dbt_mrouxinol_erp.stg_erp__colaboradores
 ),
 
-colaboradores as (
-    select *
-    from {{ ref('stg_erp__colaboradores') }}
-),
-
-relacao as (
-    select *
-    from {{ ref('stg_erp__colaborador_agencia') }}
-),
-
-base as (
-    select
-        c.cod_clientes,
-        c.tipos_clientes,
-        c.datas_nascimentos,
-        c.cpfs_cnpjs,
-
-        a.cod_agencias,
-        a.nomes_agencias,
-        a.cidades,
-        a.ufs as ufs_agencias,
-
-        col.cod_colaboradores,
-        col.primeiros_nomes,
-        col.ultimos_nomes,
-        col.cpfs as cpfs_colaboradores
-
-    from clientes c
-    left join relacao r on c.cod_clientes = r.cod_colaboradores
-    left join colaboradores col on r.cod_colaboradores = col.cod_colaboradores
-    left join agencias a on r.cod_agencias = a.cod_agencias
+agencias AS (
+    SELECT
+        cod_agencia,
+        nome_agencia,
+        cidade,
+        uf
+    FROM BANVIC.dbt_mrouxinol_erp.stg_erp__agencias
 )
 
-select *
-from base
+SELECT
+    col.cod_colaborador,
+    col.primeiro_nome AS primeiro_nome_colaborador,
+    col.ultimo_nome AS ultimo_nome_colaborador,
+    col.cpf AS cpf_colaborador,
+
+    ag.cod_agencia,
+    ag.nome_agencia,
+    ag.cidade,
+    ag.uf AS uf_agencia
+
+FROM relacao r
+LEFT JOIN colaboradores col ON r.cod_colaborador = col.cod_colaborador
+LEFT JOIN agencias ag ON r.cod_agencia = ag.cod_agencia
