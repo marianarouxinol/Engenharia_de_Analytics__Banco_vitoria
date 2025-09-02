@@ -1,19 +1,8 @@
-with base as (
-
-    select
-        TRY_TO_DATE(DATA) as datas,
-        CAST(VALOR AS FLOAT) as cotacoes_dolar
-    from {{ source('erp', 'COTACAO_DOLAR') }}
-
-),
-
-
-final as (
-
-    select *
-    from base
-
+WITH base AS (
+    SELECT
+        TRY_TO_DATE(DATA) AS data,
+        CAST(VALOR AS FLOAT) AS cotacao_dolar
+    FROM {{ source('erp', 'COTACAO_DOLAR') }}
 )
 
-select *
-from final
+SELECT * FROM base

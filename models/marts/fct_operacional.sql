@@ -1,52 +1,28 @@
-with transacoes as (
-    select *
-    from {{ ref('stg_erp__transacoes') }}
-),
+SELECT
+    -- Chaves
+    t.cod_transacao,
+    t.num_conta,
+    t.cod_cliente,
+    t.cod_agencia,
+    t.cod_colaborador,
+    t.data_transacao,
+    t.tipo_conta,
+    t.status_proposta,
 
-contas as (
-    select *
-    from {{ ref('stg_erp__contas') }}
-),
+    -- Métricas
+    t.valor_transacao,
+    t.valor_proposta,
+    t.valor_financiamento,
+    t.valor_entrada,
+    t.valor_prestacao,
+    t.saldo_total,
+    t.saldo_disponivel,
+    t.taxa_juros_mensal,
+    t.quantidade_parcelas,
+    t.carencia,
 
-propostas as (
-    select *
-    from {{ ref('stg_erp__propostas_credito') }}
-),
+    -- Atributos
+    t.tipo_transacao
 
-base as (
-
-    select
-        -- Chave da transação
-        t.cod_transacoes,
-        t.datas_transacoes,
-        t.nomes_transacoes,
-        t.valores_transacoes,
-
-        -- Chaves de relacionamento
-        c.cod_clientes,
-        c.cod_agencias,
-        c.cod_colaboradores,
-        c.tipos_contas,
-
-        -- Métricas da conta
-        c.saldos_totais,
-        c.saldos_disponiveis,
-
-        -- Métricas da proposta
-        p.status_propostas,
-        p.valores_propostas,
-        p.valores_financiamentos,
-        p.valores_entradas,
-        p.valores_prestacoes,
-        p.taxas_juros_mensais,
-        p.quantidades_parcelas,
-        p.carencias
-
-    from transacoes t
-    left join contas c on t.nums_contas = c.nums_contas
-    left join propostas p on t.cod_transacoes = p.cod_propostas
-
-)
-
-select *
-from base
+FROM {{ ref('int_operacional_base') }} t
+WHERE t.cod_transacao IS NOT NULL

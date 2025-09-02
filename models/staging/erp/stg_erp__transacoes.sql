@@ -1,21 +1,11 @@
-with base as (
-
-    select
-        COD_TRANSACAO       as cod_transacoes,
-        NUM_CONTA           as nums_contas,
-        TRY_TO_TIMESTAMP(DATA_TRANSACAO) as datas_transacoes,
-        INITCAP(TRIM(NOME_TRANSACAO)) as nomes_transacoes,
-        CAST(VALOR_TRANSACAO AS FLOAT) as valores_transacoes
-    from {{ source('erp', 'TRANSACOES') }}
-
-),
-
-final as (
-
-    select *
-    from base
-
+WITH base AS (
+    SELECT
+        COD_TRANSACAO AS cod_transacao,
+        NUM_CONTA AS num_conta,
+        TRY_TO_TIMESTAMP(DATA_TRANSACAO) AS data_transacao,
+        INITCAP(TRIM(NOME_TRANSACAO)) AS tipo_transacao,
+        CAST(VALOR_TRANSACAO AS FLOAT) AS valor_transacao
+    FROM {{ source('erp', 'TRANSACOES') }}
 )
 
-select *
-from final
+SELECT * FROM base

@@ -1,24 +1,24 @@
-with base as (
+WITH base AS (
 
-    select
-        COD_AGENCIA     as cod_agencias,
-        INITCAP(TRIM(NOME)) as nomes_agencias,
-        TRIM(ENDERECO) as enderecos,
-        INITCAP(TRIM(CIDADE)) as cidades,
-        UPPER(TRIM(UF)) as ufs,
-        TRY_TO_DATE(DATA_ABERTURA) as datas_aberturas,
-        COALESCE(UPPER(TRIM(TIPO_AGENCIA)), 'NÃO INFORMADO') as tipos_agencias
-    from {{ source('erp', 'AGENCIAS') }}
+    SELECT
+        COD_AGENCIA AS cod_agencia,
+        INITCAP(TRIM(NOME)) AS nome_agencia,
+        TRIM(ENDERECO) AS endereco,
+        INITCAP(TRIM(CIDADE)) AS cidade,
+        UPPER(TRIM(UF)) AS uf,
+        TRY_TO_DATE(DATA_ABERTURA) AS data_abertura,
+        COALESCE(UPPER(TRIM(TIPO_AGENCIA)), 'NÃO INFORMADO') AS tipo_agencia
+
+    FROM BANVIC.RAW_BANVIC.AGENCIAS
 
 ),
 
+final AS (
 
-final as (
-
-    select *
-    from base
+    SELECT *
+    FROM base
 
 )
 
-select *
-from final
+SELECT *
+FROM final
