@@ -31,8 +31,7 @@ clientes AS (
         REGEXP_REPLACE(cpf_cnpj, '[^0-9]', '') AS cpf_cliente,
         INITCAP(TRIM(cidade)) AS cidade_cliente,
         UPPER(TRIM(uf)) AS uf_cliente,
-        COALESCE(UPPER(TRIM(tipo_cliente)), 'NÃO INFORMADO') AS tipo_cliente,
-        TRY_TO_DATE(data_nascimento) AS data_nascimento
+        COALESCE(UPPER(TRIM(tipo_cliente)), 'NÃO INFORMADO') AS tipo_cliente
     FROM {{ ref('stg_erp__clientes') }}
 )
 
@@ -53,9 +52,9 @@ SELECT
     cli.cpf_cliente,
     cli.cidade_cliente,
     cli.uf_cliente,
-    cli.tipo_cliente,
-    cli.data_nascimento
+    cli.tipo_cliente
+
 FROM relacao r
 LEFT JOIN colaboradores col ON r.cod_colaborador = col.cod_colaborador
 LEFT JOIN agencias ag ON r.cod_agencia = ag.cod_agencia
-LEFT JOIN clientes cli ON cli.cod_cliente = r.cod_colaborador 
+LEFT JOIN clientes cli ON 1 = 1  
