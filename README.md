@@ -50,7 +50,7 @@ Engenharia_de_Analytics__Banco_vitoria/
 │   └── extract_data.py    # Script Python para extrair cotação do dólar do Banco Central
 └── README.md              # Documentação do projeto
 
-
+```
 ---
 
 ## 📌 Objetivo
