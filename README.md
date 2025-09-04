@@ -46,7 +46,6 @@ Construir um pipeline analítico completo que permita ao BanVic:
 ## 🧠 Modelo Estrela
 <img width="780" height="839" alt="MODELO ESTRELA" src="https://github.com/user-attachments/assets/cc55672d-c08d-4515-bba7-a3c744db0e6f" />
 
-A modelagem dimensional foi estruturada com base na tabela fato `FATO_OPERACIONAL`, conectada às seguintes dimensões:
 
 O modelo dimensional foi estruturado com base na tabela fato `FATO_OPERACIONAL`, conectada às principais dimensões analíticas:
 
@@ -85,7 +84,11 @@ params = {
 }
 
 response = requests.get(url, params=params)
-# Tratamento e transformação dos dados conforme estrutura da DIM_CAMBIO
+
+
+
+
+
 --
 
 ## 📊 Indicadores Modelados
@@ -103,7 +106,6 @@ response = requests.get(url, params=params)
 
 - `not null`: valida campos obrigatórios
 - `unique`: garante unicidade de chaves primárias
-- `relationships`: assegura integridade entre dimensões e fatos
 
 ---
 
