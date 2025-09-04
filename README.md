@@ -60,22 +60,7 @@ Esse modelo permite análises rápidas, confiáveis e escaláveis, apoiando deci
 
 ## 🐍 Script Python – Extração de Cotação do Dólar
 
-```python
 # scripts/enriquecimentobase.py
-
-import requests
-import pandas as pd
-
-url = "https://www3.bcb.gov.br/ptax_internet/consultarCotacaoMoeda.do"
-params = {
-    "method": "consultarCotacaoMoedaPeriodo",
-    "dataInicial": "01/01/2022",
-    "dataFinal": "30/06/2022",
-    "moeda": "USD"
-}
-
-response = requests.get(url, params=params)
-
 
 
 
