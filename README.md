@@ -31,7 +31,7 @@ Construir um pipeline analítico completo que permita ao BanVic:
 ## 📁 Engenharia_de_Analytics__Banco_vitoria
 
 
-Engenharia_de_Analytics_Banco_vitoria/ ├── models/ │ ├── staging/ # Ingestão e limpeza dos dados brutos │ ├── intermediária/ # Normalização e enriquecimento dos dados │ ├── marts/ # Modelos analíticos por tema de negócio │ └── dim_dates.sql # Dimensão temporal para análises robustas ├── seeds/ # Dados estáticos e tabelas auxiliares ├── tests/ # Testes de integridade (not null, unique, relationships) ├── scripts/ │ └── extract_data.py # Script Python para extrair cotação do dólar do Banco Central
+
 ---
 
 ## 🧠 Modelo Estrela
@@ -60,7 +60,23 @@ Esse modelo permite análises rápidas, confiáveis e escaláveis, apoiando deci
 
 ## 🐍 Script Python – Extração de Cotação do Dólar
 
-# scripts/enriquecimentobase.py
+```python
+# scripts/extract_data.py
+
+import requests
+import pandas as pd
+
+url = "https://www3.bcb.gov.br/ptax_internet/consultarCotacaoMoeda.do"
+params = {
+    "method": "consultarCotacaoMoedaPeriodo",
+    "dataInicial": "01/01/2022",
+    "dataFinal": "30/06/2022",
+    "moeda": "USD"
+}
+
+response = requests.get(url, params=params)
+# Aqui você pode tratar o JSON ou HTML retornado e transformar em DataFrame
+
 
 
 
