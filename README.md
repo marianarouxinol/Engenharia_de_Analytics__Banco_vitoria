@@ -37,8 +37,19 @@ Construir um pipeline analítico completo que permita ao BanVic:
 
 ## 📁 Estrutura do Projeto  
 
+```bash
+Engenharia_de_Analytics__Banco_vitoria/
+├── models/
+│   ├── staging/           # Ingestão e limpeza dos dados brutos
+│   ├── intermediária/     # Normalização e enriquecimento dos dados
+│   ├── marts/             # Modelos analíticos por tema de negócio
+│   └── dim_dates.sql      # Dimensão temporal para análises robustas
+├── seeds/                 # Dados estáticos e tabelas auxiliares
+├── tests/                 # Testes de integridade (not null, unique, relationships)
+├── scripts/
+│   └── extract_data.py    # Script Python para extrair cotação do dólar do Banco Central
+└── README.md              # Documentação do projeto
 
-Engenharia_de_Analytics__Banco_vitoria/ ├── models/ │ ├── staging/ # Ingestão e limpeza dos dados brutos │ ├── intermediária/ # Normalização e enriquecimento dos dados │ ├── marts/ # Modelos analíticos por tema de negócio │ └── dim_dates.sql # Dimensão temporal para análises robustas ├── seeds/ # Dados estáticos e tabelas auxiliares ├── tests/ # Testes de integridade (not null, unique, relationships) ├── scripts/ │ └── extract_data.py # Script Python para extrair cotação do dólar do Banco Central ├── README.md # Documentação do projeto
 
 ---
 
