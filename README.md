@@ -64,35 +64,6 @@ Construir um pipeline analítico completo que permita ao BanVic:
 
 ---
 
-## 🧰 Stack de Ferramentas Utilizadas
-
-| Ferramenta     | Finalidade                                                                 |
-|----------------|----------------------------------------------------------------------------|
-| **Snowflake**  | Armazenamento e processamento escalável dos dados                         |
-| **dbt**        | Modelagem analítica com camadas `staging`, `intermediária` e `marts`       |
-| **Power BI**   | Visualização dos indicadores e dashboards interativos                     |
-| **VS Code + Python** | Extração e tratamento de dados públicos (Banco Central do Brasil) |
-
----
-
-
-
-## 📁 Engenharia_de_Analytics__Banco_vitoria
-
-Engenharia_de_Analytics__Banco_vitoria/
-├── models/
-│   ├── staging/           # Ingestão e limpeza dos dados brutos
-│   ├── intermediária/     # Normalização e enriquecimento dos dados
-│   ├── marts/             # Modelos analíticos por tema de negócio
-│   └── dim_dates.sql      # Dimensão temporal para análises robustas
-├── seeds/                 # Dados estáticos e tabelas auxiliares
-├── tests/                 # Testes de integridade (not null, unique, relationships)
-├── scripts/
-│   └── extract_data.py    # Script Python para extrair cotação do dólar do Banco Central
-└── README.md              # Documentação do projeto
-
----
-
 ## 🧠 Modelo Estrela
 <img width="780" height="839" alt="MODELO ESTRELA" src="https://github.com/user-attachments/assets/cc55672d-c08d-4515-bba7-a3c744db0e6f" />
 
