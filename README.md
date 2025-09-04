@@ -4,6 +4,7 @@
 ![Snowflake](https://img.shields.io/badge/Snowflake-29B5E8?style=for-the-badge&logo=snowflake&logoColor=white)
 ![dbt](https://img.shields.io/badge/dbt-FF694B?style=for-the-badge&logo=dbt&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-025E8C?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
 ![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
 
@@ -30,6 +31,7 @@ Construir um pipeline analítico completo que permita ao BanVic:
 | **dbt**            | Modelagem analítica com camadas `staging`, `intermediária` e `marts`       |
 | **Power BI**       | Visualização dos indicadores e dashboards interativos                     |
 | **VS Code + Python** | Extração e tratamento de dados públicos (Banco Central do Brasil)        |
+| **SQL**            | Consultas e modelagem de dados         
 
 ---
 
