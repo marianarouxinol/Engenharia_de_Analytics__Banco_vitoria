@@ -1,4 +1,40 @@
 # Engenharia de Analytics – Banco Vitória 🏦📊
+# Engenharia de Analytics – Banco Vitória 🏦📊  
+
+![Snowflake](https://img.shields.io/badge/Snowflake-29B5E8?style=for-the-badge&logo=snowflake&logoColor=white)
+![dbt](https://img.shields.io/badge/dbt-FF694B?style=for-the-badge&logo=dbt&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
+
+Este projeto simula a implantação de uma **arquitetura analítica moderna** para o **Banco Vitória (BanVic)**, com foco em **maturidade de dados**, **modelagem dimensional** e **geração de insights estratégicos** para áreas como **crédito, operações e comercial**.  
+
+---
+
+## 📌 Objetivo  
+
+Construir um pipeline analítico completo que permita ao BanVic:  
+
+- 📂 Consolidar dados operacionais e comerciais  
+- 📊 Modelar indicadores de negócio confiáveis  
+- 🌍 Enriquecer análises com dados externos (ex: cotação do dólar)  
+- 🧠 Apoiar decisões estratégicas com visualizações em BI  
+
+---
+
+## 🧰 Stack de Ferramentas Utilizadas  
+
+| Ferramenta         | Finalidade                                                                 |
+|--------------------|----------------------------------------------------------------------------|
+| **Snowflake**      | Armazenamento e processamento escalável dos dados                         |
+| **dbt**            | Modelagem analítica com camadas `staging`, `intermediária` e `marts`       |
+| **Power BI**       | Visualização dos indicadores e dashboards interativos                     |
+| **VS Code + Python** | Extração e tratamento de dados públicos (Banco Central do Brasil)        |
+
+---
+
+## 📁 Estrutura do Projeto  
+
 
 Este projeto simula a implantação de uma arquitetura analítica moderna para o Banco Vitória (BanVic), com foco em maturidade de dados, modelagem dimensional e geração de insights estratégicos para áreas como crédito, operações e comercial.
 
@@ -30,7 +66,17 @@ Construir um pipeline analítico completo que permita ao BanVic:
 
 ## 📁 Engenharia_de_Analytics__Banco_vitoria
 
-
+Engenharia_de_Analytics__Banco_vitoria/
+├── models/
+│   ├── staging/           # Ingestão e limpeza dos dados brutos
+│   ├── intermediária/     # Normalização e enriquecimento dos dados
+│   ├── marts/             # Modelos analíticos por tema de negócio
+│   └── dim_dates.sql      # Dimensão temporal para análises robustas
+├── seeds/                 # Dados estáticos e tabelas auxiliares
+├── tests/                 # Testes de integridade (not null, unique, relationships)
+├── scripts/
+│   └── extract_data.py    # Script Python para extrair cotação do dólar do Banco Central
+└── README.md              # Documentação do projeto
 
 ---
 
@@ -57,28 +103,6 @@ Esse modelo permite análises rápidas, confiáveis e escaláveis, apoiando deci
 - `unique`: garante unicidade de chaves primárias
 
 ---
-
-## 🐍 Script Python – Extração de Cotação do Dólar
-
-```python
-# scripts/extract_data.py
-
-import requests
-import pandas as pd
-
-url = "https://www3.bcb.gov.br/ptax_internet/consultarCotacaoMoeda.do"
-params = {
-    "method": "consultarCotacaoMoedaPeriodo",
-    "dataInicial": "01/01/2022",
-    "dataFinal": "30/06/2022",
-    "moeda": "USD"
-}
-
-response = requests.get(url, params=params)
-# Aqui você pode tratar o JSON ou HTML retornado e transformar em DataFrame
-
-
-
 
 
 --
@@ -123,5 +147,5 @@ dbt build
 👩‍💼 Autora
 Mariana Rouxinol
 
-🔗 [Conecte-se comigo no LinkedIn](https://www.linkedin.com/in/marianarouxinol/)
+
 
