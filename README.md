@@ -47,7 +47,7 @@ Engenharia_de_Analytics__Banco_vitoria/
 ├── seeds/                 # Dados estáticos e tabelas auxiliares
 ├── tests/                 # Testes de integridade (not null, unique, relationships)
 ├── scripts/
-│   └── extract_data.py    # Script Python para extrair cotação do dólar do Banco Central
+│   └── enriquecimentobase.py    # Script Python para extrair cotação do dólar do Banco Central
 └── README.md              # Documentação do projeto
 
 ```
