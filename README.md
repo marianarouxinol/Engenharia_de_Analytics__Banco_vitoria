@@ -112,7 +112,6 @@ Esse modelo permite análises rápidas, confiáveis e escaláveis, apoiando deci
 ## 🌐 Enriquecimento com Dados Públicos
 
 - Cotação do dólar comercial via [Banco Central do Brasil](https://www.bcb.gov.br)
-- Proposta de integração futura com dados do IBGE, Receita Federal e CAGED
 
 ---
 
@@ -127,6 +126,7 @@ dbt test
 
 # Executa tudo (run + test + seed + snapshot)
 dbt build
+```
 
 👩‍💼 Autora
 Mariana Rouxinol
